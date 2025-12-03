@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Employee Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color:  #F1F5F9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        main {
+            background-color: #F8FAFC;
+            width: 100%;
+            max-width: 450px;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            text-align: center;
+        }
+        h1 {
+            color: #1E293B;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color:  #475569;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        select:focus {
+            border-color: #1E3A8A;
+            box-shadow:  0 0 0 3px rgba(30,58,138,0.1);
+            outline: none;
+        }
+        button {
+            width: 100%;
+            background-color: #1E3A8A;
+            color: white;
+            padding: 14px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background-color: #0EA5E9;
+            transform: translateY(-1px);
+        }
+        .footer {
+            margin-top: 25px;
+            font-size: 0.85rem;
+            color: #64748B;
+        }
+        .role-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .role-option {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Login</h1>
+        <form action="task3.html" method="GET">
+            <label for="employeeName">Name</label>
+            <input type="text" id="employeeName" name="employeeName" required 
+                   placeholder="Enter your full name" />
+
+            <label for="employeeEmail">Email</label>
+            <input type="email" id="employeeEmail" name="employeeEmail" required 
+                   placeholder="employee@gmail.com" />
+
+            <label for="role">Role</label>
+            <select id="role" name="role" required>
+                    <option value="">Select your role</option>
+                    <option value="receptionist">Receptionist</option>
+                    <option value="chef">Chef</option>
+                    <option value="housekeeping">Housekeeping</option>
+                    <option value="manager">Manager</option>
+            </select>
+
+
+            <label for="employeePassword">Password</label>
+            <input type="password" id="employeePassword" name="employeePassword" required 
+                   minlength="6" placeholder="Enter your password" />
+
+            <button type="submit">Login to Dashboard</button>
+        </form>
+        <div class="footer">
+            <p>Harini's Hotel - Employee Portal</p>
+        </div>
+    </main>
+</body>
+</html>

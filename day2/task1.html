@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Job Application Form</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <main>
+        <h1>Job Application Form</h1>
+        <form action="/submit-application" method="POST">
+            <section>
+                <h2>Personal Information</h2>
+                <div>
+                    <label for="fullName">Full Name:</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+                <br>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <br>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required minlength="8">
+                </div>
+                <br>
+                <div>
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob" required>
+                </div>
+            </section>
+            
+            <section>
+                <h2>Job Details</h2>
+                <div>
+                    <label for="role">Desired Role:</label>
+                    <select id="role" name="role" required>
+                        <option value="">Select a role</option>
+                        <option value="frontend">Frontend Developer</option>
+                        <option value="backend">Backend Developer</option>
+                        <option value="fullstack">Full Stack Developer</option>
+                        <option value="devops">DevOps Engineer</option>
+                    </select>
+                </div>
+                <br>
+                <div>
+                    <label for="experience">Years of Experience:</label>
+                    <input type="number" id="experience" name="experience" min="0" max="50">
+                </div>
+            </section>
+            <br>
+            <section>
+                <h2>File Uploads</h2>
+                <div>
+                    <label for="resume">Upload Resume (PDF, DOC, DOCX):</label>
+                    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                    <small>Max size: 5MB</small>
+                </div>
+                <br>
+                <div>
+                    <label for="audio">Upload Audio (Introduction/Presentation):</label>
+                    <input type="file" id="audio" name="audio" accept="audio/*" required>
+                    <small>Max size: 10MB (MP3, WAV, etc.)</small>
+                </div>
+                <br>
+                <div>
+                    <label for="video">Upload Video (Demo/Portfolio):</label>
+                    <input type="file" id="video" name="video" accept="video/*" required>
+                    <small>Max size: 50MB (MP4, AVI, MOV, etc.)</small>
+                </div>
+            </section>
+            
+            <br>
+            <div>
+                <label>
+                    <input type="checkbox" name="agree" required>
+                    I agree to the terms and conditions
+                </label>
+            </div>
+            <br>
+            <button type="submit">Submit Application</button>
+        </form>
+    </main>
+</body>
+</html>
