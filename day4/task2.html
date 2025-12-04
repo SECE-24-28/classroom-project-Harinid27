@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Job Application & Login Form</title>
+    <style>
+       
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        main {
+            background-color: white;
+            width: 100%;
+            max-width: 480px;
+            margin: 40px 15px;
+            padding: 30px 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        h1, h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        section {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: 600;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"],
+        input[type="number"],
+        select,
+        input[type="file"] {
+            width: 100%;
+            padding: 8px 12px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        input[type="date"]:focus,
+        input[type="number"]:focus,
+        select:focus,
+        input[type="file"]:focus {
+            border-color: black;
+            outline: none;
+        }
+
+        small {
+            color: #888;
+            font-size: 0.85rem;
+            margin-top: -10px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        button[type="submit"] {
+            background-color: black;
+            color: white;
+            padding: 12px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 12px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: black;
+        }
+
+        .login-section {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Job Application & Login</h1>
+        <form action="jobapplication.html" method="POST" enctype="multipart/form-data">
+            <section class="login-section">
+                <h2>Login</h2>
+                <div>
+                    <label for="loginEmail">Email:</label>
+                    <input type="email" id="loginEmail" name="loginEmail" required />
+                </div>
+                <div>
+                    <label for="loginPassword">Password:</label>
+                    <input type="password" id="loginPassword" name="loginPassword" required minlength="8" />
+                </div>
+            </section>
+
+            <section>
+                <h2>Personal Information</h2>
+                <div>
+                    <label for="fullName">Full Name:</label>
+                    <input type="text" id="fullName" name="fullName" required />
+                </div>
+                <div>
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob" required />
+                </div>
+            </section>
+
+            <section>
+                <h2>Job Details</h2>
+                <div>
+                    <label for="role">Desired Role:</label>
+                    <select id="role" name="role" required>
+                        <option value="">Select a role</option>
+                        <option value="frontend">Frontend Developer</option>
+                        <option value="backend">Backend Developer</option>
+                        <option value="fullstack">Full Stack Developer</option>
+                        <option value="devops">DevOps Engineer</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="experience">Years of Experience:</label>
+                    <input type="number" id="experience" name="experience" min="0" max="50" />
+                </div>
+            </section>
+
+            <section>
+                <h2>File Uploads</h2>
+                <div>
+                    <label for="resume">Upload Resume (PDF, DOC, DOCX):</label>
+                    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" />
+                    <small>Max size: 5MB</small>
+                </div>
+                <div>
+                    <label for="audio">Upload Audio (Introduction/Presentation):</label>
+                    <input type="file" id="audio" name="audio" accept="audio/*" />
+                    <small>Max size: 10MB (MP3, WAV, etc.)</small>
+                </div>
+                <div>
+                    <label for="video">Upload Video (Demo/Portfolio):</label>
+                    <input type="file" id="video" name="video" accept="video/*" />
+                    <small>Max size: 50MB (MP4, AVI, MOV, etc.)</small>
+                </div>
+            </section>
+
+            <div>
+                <label>
+                    <input type="checkbox" name="agree" required /> I agree to the terms and conditions
+                </label>
+            </div>
+
+            <button type="submit">Submit Application</button>
+        </form>
+    </main>
+    <script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+        const email = document.getElementById('loginEmail');
+        const password = document.getElementById('loginPassword');
+        const fullName = document.getElementById('fullName');
+        const dob = document.getElementById('dob');
+        const role = document.getElementById('role');
+        const agree = document.querySelector('input[name="agree"]');
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        [email, password, fullName, dob, role, agree].forEach(el => {
+            if(el) {
+                el.style.borderColor = '';
+            }
+        });
+
+        if(!emailPattern.test(email.value.trim())) {
+            alert('Please enter a valid email address.');
+            email.style.borderColor = 'red';
+            email.focus();
+            event.preventDefault();
+            return;
+        }
+
+        if(password.value.length < 8) {
+            alert('Password must be at least 8 characters long.');
+            password.style.borderColor = 'red';
+            password.focus();
+            event.preventDefault();
+            return;
+        }
+
+        if(fullName.value.trim() === '') {
+            alert('Please enter your full name.');
+            fullName.style.borderColor = 'red';
+            fullName.focus();
+            event.preventDefault();
+            return;
+        }
+
+        if(dob.value === '') {
+            alert('Please enter your date of birth.');
+            dob.style.borderColor = 'red';
+            dob.focus();
+            event.preventDefault();
+            return;
+        } else {
+            const dobDate = new Date(dob.value);
+            const today = new Date();
+            if(dobDate >= today) {
+                alert('Date of birth must be in the past.');
+                dob.style.borderColor = 'red';
+                dob.focus();
+                event.preventDefault();
+                return;
+            }
+        }
+
+        if(role.value === '') {
+            alert('Please select your desired role.');
+            role.style.borderColor = 'red';
+            role.focus();
+            event.preventDefault();
+            return;
+        }
+
+        if(!agree.checked) {
+            alert('You must agree to the terms and conditions to submit.');
+            agree.focus();
+            event.preventDefault();
+            return;
+        }
+    });
+</script>
+
+</body>
+</html>

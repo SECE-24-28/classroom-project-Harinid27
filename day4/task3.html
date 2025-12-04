@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Registration Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+        form { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        label { display: block; margin: 10px 0 5px; font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        button {background: #007bff;color: #ffffff;padding: 15px;border: none;border-radius: 5px;cursor: pointer;width: 100%;font-size: 16px;}
+        button:hover {background: #0056b3;}
+        .error { color: red; font-size: 14px; margin-top: 5px; display: block; }
+        h1 { text-align: center; color: #333; }
+        .terms-label {display: flex;align-items: center;gap: 8px;margin: 15px 0;font-weight: bold;}
+        .terms-label input[type="checkbox"] {width: 18px;height: 18px;margin: 0;}
+
+    </style>
+</head>
+<body>
+    <h1>Exam Registration</h1>
+    <form id="examForm">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" required>
+        <span class="error" id="name-error"></span>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+        <span class="error" id="email-error"></span>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" required>
+        <span class="error" id="password-error"></span>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" required>
+        <span class="error" id="phone-error"></span>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" required>
+        <span class="error" id="dob-error"></span>
+
+        <label for="examType">Exam Type:</label>
+        <select id="examType" required>
+            <option value="">Select Exam</option>
+            <option value="midterm">Midterm</option>
+            <option value="final">Final</option>
+            <option value="entrance">Entrance</option>
+        </select>
+        <span class="error" id="exam-error"></span>
+
+        <label for="course">Course:</label>
+        <select id="course" required>
+            <option value="">Select Course</option>
+            <option value="CS">Computer Science</option>
+            <option value="ML">Machine Learning</option>
+            <option value="DB">Database Systems</option>
+        </select>
+
+        <label for="address">Address:</label>
+        <textarea id="address" rows="3" required></textarea>
+        
+        <label class="terms-label">
+        <input type="checkbox" id="terms" required>
+        <span>Agree to terms and conditions</span>
+        </label>
+        <span class="error" id="terms-error"></span>
+
+
+        <button type="submit">Register for Exam</button>
+    </form>
+
+    <script>
+        document.getElementById('examForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value.replace(/\D/g, '');
+            const dob = document.getElementById('dob').value;
+            const password = document.getElementById('password').value;
+            const examType = document.getElementById('examType').value;
+            const terms = document.getElementById('terms').checked;
+
+            document.querySelectorAll('.error').forEach(el => el.textContent = '');
+
+            let isValid = true;
+
+            if (name.length < 2 || /\d/.test(name)) {
+                document.getElementById('name-error').textContent = 'Name must be at least 2 letters, no numbers.';
+                isValid = false;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('email-error').textContent = 'Enter a valid email address.';
+                isValid = false;
+            }
+
+            if (phone.length !== 10) {
+                document.getElementById('phone-error').textContent = 'Phone must be 10 digits.';
+                isValid = false;
+            }
+
+            const today = new Date();
+            const birthDate = new Date(dob);
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) age--;
+            if (age < 18) {
+                document.getElementById('dob-error').textContent = 'Must be at least 18 years old.';
+                isValid = false;
+            }
+
+            const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            if (!passRegex.test(password)) {
+                document.getElementById('password-error').textContent = 'Password: 8+ chars, uppercase, number, special char.';
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert('Registration successful! Check console for form data.');
+                console.log({ name, email, phone, examType });
+            }
+        });
+    </script>
+</body>
+</html>
